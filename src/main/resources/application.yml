@@ -1,0 +1,90 @@
+spring:
+  application:
+    name: hermes-agent
+
+  # 禁用不需要的自动配置
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+      - org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration
+
+  # Redis 配置
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+      database: 7
+
+  # 异步执行器
+  task:
+    execution:
+      pool:
+        core-size: 4
+        max-size: 16
+        queue-capacity: 100
+        thread-name-prefix: hermes-async-
+
+# 服务器配置
+server:
+  port: 8995
+
+# 日志配置
+logging:
+  level:
+    root: INFO
+    com.hermes.agent: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+
+# Hermes Agent 配置
+hermes:
+  default_model: qwen-plus
+  default_provider: dashscope
+  max_history: 50
+  max_tokens: 4096
+  temperature: 0.7
+  stream_enabled: true
+
+  # 数据目录
+  data_dir: C:/data
+
+  # 内存/持久化配置
+  memory:
+    backend: sqlite
+    db_path: C:/hermes.db
+    pool_size: 5
+    fts_enabled: true
+
+  # Redis 配置（可选）
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    database: 7
+
+  # 用户画像 / Honcho 配置
+  profile:
+    enabled: false
+    peer_name: ""
+    ai_peer: "hermes"
+    workspace: "hermes"
+    observation_mode: "directional"
+    write_frequency: "async"
+    recall_mode: "hybrid"
+    context_char_budget: 2000
+    dialectic_cadence: 2
+    dialectic_depth: 1
+    dialectic_reasoning_level: "low"
+    reasoning_level_cap: "high"
+    reasoning_heuristic: true
+    dialectic_max_chars: 600
+    # Session strategy: per-session / per-directory / per-repo / global
+    session_strategy: "per-session"
+    save_messages: true
+    # Semantic search (vector embeddings)
+    semantic_search_enabled: true
+    embedding_backend: "dashscope"  # dashscope / openai / mock
+    embedding_dimension: 1536
+    semantic_search_top_k: 10
+    semantic_search_min_score: 0.5
+    embedding_batch_size: 20
+    embedding_max_text_length: 8000
