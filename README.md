@@ -88,6 +88,13 @@ com.hermes.agent
   subagent/               - Sub-agent management
   api/                    - REST API controllers
 ```
+# hermes-java
+本项目为 **纯 Java 语言独立全新实现**，仅参考 Nous Research 开源项目 hermes-agent-main 的架构与设计思想。
+
+原项目地址：https://github.com/NousResearch/hermes-agent
+原项目开源协议：MIT License
+
+本项目 **非 Nous Research 官方出品**，无任何官方关联，仅社区独立实现，遵循开源精神致敬原作。
 
 ## License
 
